@@ -70,15 +70,15 @@ from sklearn.neural_network import MLPClassifier
 
 # 1) Definiši MLP (primer: 2 skrivena sloja sa po 256 neurona, ReLU aktivacija, Adam optimizer, broj epoha = 50)
 mlp_model = MLPClassifier(
-    hidden_layer_sizes=(256, 128),
-    activation='relu',
-    solver='adam',
-    alpha=1e-4,
-    batch_size=64,
-    learning_rate_init=1e-3,
+    hidden_layer_sizes=(256, 128), #prvi sloj: 256 neurona, drugi sloj: 128 neurona
+    activation='relu', # Aktivaciona funkcija koja se koristi u skrivenim slojevima.
+    solver='adam', # Optimizator koji reguliše kako model ažurira težine.
+    alpha=1e-4, # Regularizacija L2 (weight decay). Sprečava preveliku zavisnost modela od pojedinačnih težina → smanjuje overfitting.
+    batch_size=64, # Broj uzoraka koji se koriste za jedan update težina. Manji batch = više ažuriranja po epohi → duže treniranje, potencijalno bolja generalizacija
+    learning_rate_init=1e-3, # Početna brzina učenja za Adam optimizator.
     max_iter=50,
     random_state=42,
-    verbose=True
+    verbose=True # Ako staviš False → tiho treniranje.
 )
 
 # 2) Treniraj na train
